@@ -37,7 +37,7 @@ public class PhoneController {
             phoneResponse.setAuthCode("A093756186");
         }
 
-       System.out.println("Phone Response is "+ phoneResponse.toString());
+       // System.out.println("Phone Response is "+ phoneResponse.toString());
 
 
         return new ResponseEntity<PhoneResponse>(phoneResponse, HttpStatus.OK);
