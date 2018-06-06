@@ -9,13 +9,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class CtiApplicationTests {
+public class CtiApplicationIT {
 
     @Test
     public void contextLoads() {
-
-        System.out.println("Unit Tests");
-
+        System.out.println("Integration Tests");
     }
 
 }
