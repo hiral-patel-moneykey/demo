@@ -69,7 +69,14 @@
     </dependencies>
 
     <build>
+        <!-- To define the plugin version in your parent POM -->
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -77,22 +84,7 @@
                     <executable>true</executable>
                 </configuration>
             </plugin>
-<!--
-            <plugin>
-                <groupId>org.zeroturnaround</groupId>
-                <artifactId>jrebel-maven-plugin</artifactId>
-                <version>1.1.8</version>
-                <executions>
-                    <execution>
-                        <id>generate-rebel-xml</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
--->
+
             <!-- Following snippet of making extra integration test folder is taken from http://blog.code-cop.org/2015/04/maven-integration-tests-extra-folder.html -->
             <!-- Failsafe plugin: http://maven.apache.org/surefire/maven-failsafe-plugin/ -->
             <plugin>

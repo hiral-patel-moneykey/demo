@@ -1,9 +1,6 @@
 package com.mk.cti.model;
 
-import org.springframework.context.annotation.Bean;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table( name = "phoneresponse" )
