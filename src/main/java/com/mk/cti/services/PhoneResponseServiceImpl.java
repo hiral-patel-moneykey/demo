@@ -14,8 +14,7 @@ public class PhoneResponseServiceImpl implements PhoneResponseService{
     @Override
     public PhoneResponse findByPhoneNumber(String phoneNumber) {
 
-        PhoneResponse phoneResponse = phoneResponseRepository.findByPhoneNumber(phoneNumber);
-        return phoneResponse;
+        return phoneResponseRepository.findByPhoneNumber(phoneNumber);
 
     }
 }

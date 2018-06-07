@@ -1,8 +1,6 @@
 package com.mk.cti.utility;
 
 import com.mk.cti.model.PhoneResponse;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component

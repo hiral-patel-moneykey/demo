@@ -25,8 +25,6 @@ public class PhoneController {
     @RequestMapping(value="{phoneNumber}", method = RequestMethod.GET)
     public ResponseEntity<PhoneResponse> getCustomerLoanInfo(@PathVariable("phoneNumber") String phoneNumber) {
 
-        // PhoneResponse phoneResponse = phoneUtility.getPhoneResponse(phoneNumber);
-
         PhoneResponse phoneResponse = phoneResponseService.findByPhoneNumber(phoneNumber);
 
         if(phoneResponse == null)
@@ -36,9 +34,6 @@ public class PhoneController {
             phoneResponse.setLoanId(0L);
             phoneResponse.setAuthCode("A093756186");
         }
-
-       // System.out.println("Phone Response is "+ phoneResponse.toString());
-
 
         return new ResponseEntity<PhoneResponse>(phoneResponse, HttpStatus.OK);
     }
