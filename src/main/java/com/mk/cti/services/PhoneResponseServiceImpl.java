@@ -18,7 +18,8 @@ public class PhoneResponseServiceImpl implements PhoneResponseService{
     @Override
     public PhoneResponse findByPhoneNumber(String phoneNumber) {
 
-        return phoneResponseRepository.findByPhoneNumber(phoneNumber);
+        PhoneResponse phoneResponse = phoneResponseRepository.findByPhoneNumber(phoneNumber);
+        return phoneResponse;
 
     }
 }
