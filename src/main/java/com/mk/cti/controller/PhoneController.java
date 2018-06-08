@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ *
+ */
 @RestController
 @RequestMapping("/phone")
 public class PhoneController {
@@ -27,8 +30,7 @@ public class PhoneController {
 
         PhoneResponse phoneResponse = phoneResponseService.findByPhoneNumber(phoneNumber);
 
-        if(phoneResponse == null)
-        {
+        if(phoneResponse == null) {
             phoneResponse = new PhoneResponse();
             phoneResponse.setCustomerId(0L);
             phoneResponse.setLoanId(0L);

@@ -1,47 +1,102 @@
 package com.mk.cti.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+
+/**
+ * This is a model class for PhoneResponse.
+ */
 
 @Entity
-@Table( name = "phoneresponse" )
-public class PhoneResponse{
+@Table(name = "phoneresponse")
+public class PhoneResponse {
 
+    /**
+     * Customerid
+     */
     private Long customerId;
+
+    /**
+     * Loanid
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanId;
+
+    /**
+     * Authentication code
+     */
     private String authCode;
+
+    /**
+     * Phone number
+     */
     private String phoneNumber;
 
+    /**
+     *
+     * @return customerid
+     */
     public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    /**
+     *
+     * @param customerId1 dfg
+     */
+    public void setCustomerId(final Long customerId1) {
+        this.customerId = customerId1;
     }
 
+    /**
+     *
+     * @return loadnid
+     */
     public Long getLoanId() {
         return loanId;
     }
 
-    public void setLoanId(Long loanId) {
-        this.loanId = loanId;
+    /**
+     *
+     * @param loanId1 sdfds
+     */
+    public void setLoanId(final Long loanId1) {
+        this.loanId = loanId1;
     }
 
+    /**
+     *
+     * @return authentication code
+     */
     public String getAuthCode() {
         return authCode;
     }
 
-    public void setAuthCode(String authCode) {
-        this.authCode = authCode;
+    /**
+     *
+     * @param authCode1 sdf
+     */
+    public void setAuthCode(final String authCode1) {
+        this.authCode = authCode1;
     }
 
+    /**
+     *
+     * @return phonenumber
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    /**
+     *
+     * @param phoneNumber1 sdf
+     */
+    public void setPhoneNumber(final String phoneNumber1) {
+        this.phoneNumber = phoneNumber1;
     }
 }
