@@ -34,6 +34,20 @@ public class PhoneController {
             phoneResponse.setLoanId(0L);
             phoneResponse.setAuthCode("A093756186");
         }
+        if(phoneResponse == null)
+        {
+            phoneResponse = new PhoneResponse();
+            phoneResponse.setCustomerId(0L);
+            phoneResponse.setLoanId(0L);
+            phoneResponse.setAuthCode("A093756186");
+        }
+        if(phoneResponse == null)
+        {
+            phoneResponse = new PhoneResponse();
+            phoneResponse.setCustomerId(0L);
+            phoneResponse.setLoanId(0L);
+            phoneResponse.setAuthCode("A093756186");
+        }
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
     }
