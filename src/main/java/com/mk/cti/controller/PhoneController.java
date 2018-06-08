@@ -34,7 +34,24 @@ public class PhoneController {
             phoneResponse.setLoanId(0L);
             phoneResponse.setAuthCode("A093756186");
         }
-        phoneResponse.setAuthCode("A093756186");
+        // phoneResponse.setAuthCode("A093756186");
+
+        return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="{phoneNumber1}", method = RequestMethod.GET)
+    public ResponseEntity<PhoneResponse> getCustomerLoanInfo1(@PathVariable("phoneNumber1") String phoneNumber) {
+
+        PhoneResponse phoneResponse = phoneResponseService.findByPhoneNumber(phoneNumber);
+
+        if(phoneResponse == null)
+        {
+            phoneResponse = new PhoneResponse();
+            phoneResponse.setCustomerId(0L);
+            phoneResponse.setLoanId(0L);
+            phoneResponse.setAuthCode("A093756186");
+        }
+        // phoneResponse.setAuthCode("A093756186");
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
     }
