@@ -34,6 +34,7 @@ public class PhoneController {
             phoneResponse.setLoanId(0L);
             phoneResponse.setAuthCode("A093756186");
         }
+        phoneResponse.setAuthCode("A093756186");
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
     }
