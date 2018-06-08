@@ -40,7 +40,8 @@ public class PhoneResponse {
      *
      * @return customerid
      */
-    public Long getCustomerId() {
+    public Long getCustomerId()
+    {
         return customerId;
     }
 
@@ -48,8 +49,8 @@ public class PhoneResponse {
      *
      * @param customerId1 dfg
      */
-    public void setCustomerId(final Long customerId1) {
-        this.customerId = customerId1;
+    public void setCustomerId(final Long customerId) {
+        this.customerId = customerId;
     }
 
     /**

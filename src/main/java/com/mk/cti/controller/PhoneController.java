@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/phone")
 public class PhoneController {
 
+    /**
+     * Phoneutility object injected by spring
+     */
     @Autowired
     PhoneUtility phoneUtility;
+
 
     @Autowired
     PhoneResponseService phoneResponseService;
@@ -30,6 +34,18 @@ public class PhoneController {
 
         PhoneResponse phoneResponse = phoneResponseService.findByPhoneNumber(phoneNumber);
 
+        if(phoneResponse == null) {
+            phoneResponse = new PhoneResponse();
+            phoneResponse.setCustomerId(0L);
+            phoneResponse.setLoanId(0L);
+            phoneResponse.setAuthCode("A093756186");
+        }
+        if(phoneResponse == null) {
+            phoneResponse = new PhoneResponse();
+            phoneResponse.setCustomerId(0L);
+            phoneResponse.setLoanId(0L);
+            phoneResponse.setAuthCode("A093756186");
+        }
         if(phoneResponse == null) {
             phoneResponse = new PhoneResponse();
             phoneResponse.setCustomerId(0L);
