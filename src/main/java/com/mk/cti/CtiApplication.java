@@ -23,7 +23,7 @@ public class CtiApplication {
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> servletContainer() {
         return server -> {
             if (server instanceof TomcatServletWebServerFactory) {
-                ((TomcatServletWebServerFactory) server).addAdditionalTomcatConnectors(redirectConnector());
+                (server).addAdditionalTomcatConnectors(redirectConnector());
             }
         };
     }

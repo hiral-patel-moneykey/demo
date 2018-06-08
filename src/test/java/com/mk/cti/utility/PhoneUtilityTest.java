@@ -29,9 +29,6 @@ public class PhoneUtilityTest {
     @Test
     public void shouldReturnPhoneResponseObject() {
 
-        if(phoneUtility == null)
-            phoneUtility = new PhoneUtility();
-
         PhoneResponse phoneResponse = phoneUtility.getPhoneResponse("416123123");
         assertThat(phoneResponse, instanceOf(PhoneResponse.class));
 
