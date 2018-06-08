@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PhoneResponseServiceImpl implements PhoneResponseService{
 
-    @Autowired
     private PhoneResponseRepository phoneResponseRepository;
+
+    @Autowired
+    public PhoneResponseServiceImpl(PhoneResponseRepository phoneResponseRepository) {
+        this.phoneResponseRepository = phoneResponseRepository;
+    }
 
     @Override
     public PhoneResponse findByPhoneNumber(String phoneNumber) {
 
-        return phoneResponseRepository.findByPhoneNumber(phoneNumber);
+        PhoneResponse phoneResponse = phoneResponseRepository.findByPhoneNumber(phoneNumber);
+        return phoneResponse;
 
     }
 }
