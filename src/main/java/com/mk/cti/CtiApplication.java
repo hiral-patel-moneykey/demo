@@ -11,6 +11,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class CtiApplication {
 
+    /**
+     * This is the main entry point for the CTI Application.
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(CtiApplication.class, args);
     }
