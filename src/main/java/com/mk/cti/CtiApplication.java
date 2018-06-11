@@ -21,7 +21,7 @@ public class CtiApplication
 
     /**
      * This is the main entry point for the CTI Application.
-     * @param args
+     * @param args sdfdsf
      */
     public static void main(String[] args)
     {
@@ -36,18 +36,12 @@ public class CtiApplication
 
     /**
      * This method returns the instance of a servlet container
-     * @return
+     * @return sdfasd
      */
-    @Override
     @Bean
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> servletContainer()
     {
-        return server -> {
-            if (server instanceof TomcatServletWebServerFactory)
-            {
-                server.addAdditionalTomcatConnectors(redirectConnector());
-            }
-        };
+        return server -> server.addAdditionalTomcatConnectors(redirectConnector());
     }
 
     private Connector redirectConnector()

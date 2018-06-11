@@ -12,30 +12,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- */
+
 @RestController
 @RequestMapping("/phone")
-public class PhoneController {
+public class PhoneController
+{
 
     @Autowired
-    PhoneUtility phoneUtility;
+    private PhoneUtility phoneUtility;
 
     @Autowired
-    PhoneResponseService phoneResponseService;
+    private PhoneResponseService phoneResponseService;
 
     @RequestMapping(value="{phoneNumber}", method = RequestMethod.GET)
-    public ResponseEntity<PhoneResponse> getCustomerLoanInfo(@PathVariable("phoneNumber") String phoneNumber) {
+    public ResponseEntity<PhoneResponse> getCustomerLoanInfo(@PathVariable("phoneNumber") String phoneNumber)
+    {
 
         PhoneResponse phoneResponse = phoneResponseService.findByPhoneNumber(phoneNumber);
 
-        if(phoneResponse == null) {
+        if(phoneResponse == null)
+        {
             phoneResponse = new PhoneResponse();
             phoneResponse.setCustomerId(0L);
             phoneResponse.setLoanId(0L);
             phoneResponse.setAuthCode("A093756186");
         }
+
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
     }
