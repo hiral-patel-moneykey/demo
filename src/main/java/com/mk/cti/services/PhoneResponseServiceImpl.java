@@ -11,19 +11,16 @@ public class PhoneResponseServiceImpl implements PhoneResponseService{
     private PhoneResponseRepository phoneResponseRepository;
 
     @Autowired
-    public PhoneResponseServiceImpl(PhoneResponseRepository phoneResponseRepository) {
-        this.phoneResponseRepository = phoneResponseRepository;
+    public PhoneResponseServiceImpl(PhoneResponseRepository phoneResponseRepository)
+    {this.phoneResponseRepository = phoneResponseRepository;
     }
 
     @Override
-    public PhoneResponse findByPhoneNumber(String phoneNumber) {
+    public PhoneResponse findByPhoneNumber(String phoneNumber)
+    {
 
         PhoneResponse phoneResponse = phoneResponseRepository.findByPhoneNumber(phoneNumber);
         return phoneResponse;
 
     }
-
-    {}
-
-
 }
