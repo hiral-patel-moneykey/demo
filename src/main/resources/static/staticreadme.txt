@@ -1,0 +1,1 @@
+This is a readme file added to the static folder under resources folder.
