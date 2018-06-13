@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <mkwebsite.source.root>src/main/resources/templates</mkwebsite.source.root>
     </properties>
 
     <profiles>
@@ -32,19 +33,20 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <environment.name>development</environment.name>
-                <environment.profile>dev</environment.profile>
-                <webpack.file>config/webpack.config.dev.js</webpack.file>
-                <spring.profiles.active>dev</spring.profiles.active>
+                <environment.name>development</environment.name> <!-- This is for webpack. Possible values can be development, production, or test -->
+                <spring.profiles.active>dev</spring.profiles.active> <!-- Which profile needs to be activated in spring boot app -->
+                <webpack.config.file>config/webpack.config.dev.js</webpack.config.file> <!-- This is a webpack configuration file -->
+                <mkwebsite.config.file>application-dev.properties</mkwebsite.config.file>
+                 <!-- <environment.profile>dev</environment.profile> This can be used to indicate which react profile needs to be activated.-->
             </properties>
         </profile>
         <profile>
             <id>production</id>
             <properties>
                 <environment.name>production</environment.name>
-                <environment.profile>prod</environment.profile>
-                <webpack.file>config/webpack.config.prod.js</webpack.file>
                 <spring.profiles.active>prod</spring.profiles.active>
+                <webpack.config.file>config/webpack.config.prod.js</webpack.config.file>
+                <mkwebsite.config.file>application-prod.properties</mkwebsite.config.file>
             </properties>
         </profile>
     </profiles>
@@ -207,7 +209,7 @@
                         </goals>
                         <configuration>
                             <arguments>install</arguments>
-                            <workingDirectory>src/main/resources/templates</workingDirectory>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -216,12 +218,12 @@
                             <goal>webpack</goal>
                         </goals>
                         <configuration>
-                            <!-- <workingDirectory>src/main/resources/templates/node_modules/webpack/bin/</workingDirectory> -->
-                            <workingDirectory>src/main/resources/templates</workingDirectory>
-                            <arguments>--config=${webpack.file}</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                            <arguments>--config=${webpack.config.file}</arguments>
                             <environmentVariables>
                                 <NODE_ENV>${environment.name}</NODE_ENV>
-                                <REACT_APP_CONFIG_PROFILE>${environment.profile}</REACT_APP_CONFIG_PROFILE>
+                                <!-- <REACT_APP_CONFIG_PROFILE>${environment.profile}</REACT_APP_CONFIG_PROFILE> -->
+                                <REACT_APP_SPRING_CONFIG_FILE>${mkwebsite.config.file}</REACT_APP_SPRING_CONFIG_FILE>
                             </environmentVariables>
                         </configuration>
                     </execution>

@@ -8,11 +8,21 @@ class App extends Component {
     constructor() {
         super();
 
-        console.log("REACT_APP_CONFIG_PROFILE "+ process.env.REACT_APP_CONFIG_PROFILE);
-        // console.log("REACT_APP_RANDOM "+ process.env.REACT_APP_RANDOM);
-        // console.log("REACT_APP_CONFIG_ENV is "+ process.env.REACT_APP_CONFIG_ENV);
-        console.log("Message is "+ config.message);
-        console.log("Base URL is "+ config.baseurl);
+        var jsonEnvironment = process.env;
+        for(var key in jsonEnvironment) {
+            if(jsonEnvironment.hasOwnProperty(key))
+            {
+                console.log("Environment Variable : "+ key + " and Value is "+ jsonEnvironment[key]);
+            }
+        }
+
+        for(var key1 in config) {
+            if(config.hasOwnProperty(key1))
+            {
+                console.log("config Variable : "+ key1 + " and Value is "+ config[key1]);
+            }
+        }
+
     }
 
   render() {

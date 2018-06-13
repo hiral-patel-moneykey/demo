@@ -1,5 +1,28 @@
 'use strict';
 
+const configprefix = "mkwebsite";
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('../application.properties');
+// get spring config file
+var springconfigfile = process.env.REACT_APP_SPRING_CONFIG_FILE;
+if(springconfigfile)
+{
+    properties = properties.append('../'+springconfigfile);
+}
+var jsonProperties = properties.getAllProperties();
+for(var key in jsonProperties) {
+    if(jsonProperties.hasOwnProperty(key))
+    {
+        console.log("Key: "+ key + " and Value is "+ jsonProperties[key]);
+        if(key.startsWith(configprefix))
+        {
+            // process.env["REACT_APP_"+key] = jsonProperties[key];
+            process.env[key] = jsonProperties[key];
+        }
+    }
+}
+// process.env.REACT_APP_MKWEBCONFIG = jsonProperties;
+
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -59,10 +82,11 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
 // injected into the application via DefinePlugin in Webpack configuration.
 const REACT_APP = /^REACT_APP_/i;
+const MKWEBSITEREGEX = new RegExp(configprefix, "i");
 
 function getClientEnvironment(publicUrl) {
   const raw = Object.keys(process.env)
-    .filter(key => REACT_APP.test(key))
+    .filter(key => REACT_APP.test(key) || MKWEBSITEREGEX.test(key.toLowerCase()))
     .reduce(
       (env, key) => {
         env[key] = process.env[key];
