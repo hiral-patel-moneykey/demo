@@ -2,12 +2,12 @@
 
 const configprefix = "mkwebsite";
 var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('../application.properties');
+var properties = PropertiesReader('../resources/application.properties');
 // get spring config file
 var springconfigfile = process.env.REACT_APP_SPRING_CONFIG_FILE;
 if(springconfigfile)
 {
-    properties = properties.append('../'+springconfigfile);
+    properties = properties.append('../resources/'+springconfigfile);
 }
 var jsonProperties = properties.getAllProperties();
 for(var key in jsonProperties) {
