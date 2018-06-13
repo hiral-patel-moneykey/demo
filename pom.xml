@@ -34,6 +34,7 @@
             <properties>
                 <environment.name>development</environment.name>
                 <webpack.file>config/webpack.config.dev.js</webpack.file>
+                <spring.profiles.active>dev</spring.profiles.active>
             </properties>
         </profile>
         <profile>
@@ -41,6 +42,7 @@
             <properties>
                 <environment.name>production</environment.name>
                 <webpack.file>config/webpack.config.prod.js</webpack.file>
+                <spring.profiles.active>prod</spring.profiles.active>
             </properties>
         </profile>
     </profiles>
@@ -94,6 +96,13 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <!-- To define the plugin version in your parent POM -->
         <plugins>
             <plugin>

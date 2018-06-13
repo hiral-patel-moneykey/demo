@@ -5,6 +5,7 @@ import com.mk.cti.model.PhoneResponse;
 import com.mk.cti.services.PhoneResponseService;
 import com.mk.cti.utility.PhoneUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,9 @@ public class PhoneController
     @Autowired
     private PhoneResponseService phoneResponseService;
 
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
+
     @RequestMapping(value="{phoneNumber}", method = RequestMethod.GET)
     public ResponseEntity<PhoneResponse> getCustomerLoanInfo(@PathVariable("phoneNumber") String phoneNumber)
     {
@@ -40,5 +44,13 @@ public class PhoneController
 
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/profile", method = RequestMethod.GET)
+    public ResponseEntity<String> getCustomerLoanInfo()
+    {
+        System.out.println("Spring Active profile is "+ activeProfile);
+
+        return new ResponseEntity<>(activeProfile, HttpStatus.OK);
     }
 }
