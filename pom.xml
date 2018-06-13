@@ -25,6 +25,26 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <environment.name>development</environment.name>
+                <webpack.file>config/webpack.config.dev.js</webpack.file>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <environment.name>production</environment.name>
+                <webpack.file>config/webpack.config.prod.js</webpack.file>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
 
         <dependency>
@@ -187,9 +207,9 @@
                         <configuration>
                             <!-- <workingDirectory>src/main/resources/templates/node_modules/webpack/bin/</workingDirectory> -->
                             <workingDirectory>src/main/resources/templates</workingDirectory>
-                            <arguments>--config=config/webpack.config.dev.js</arguments>
+                            <arguments>--config=${webpack.file}</arguments>
                             <environmentVariables>
-                                <NODE_ENV>development</NODE_ENV>
+                                <NODE_ENV>${environment.name}</NODE_ENV>
                             </environmentVariables>
                         </configuration>
                     </execution>
