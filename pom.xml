@@ -25,6 +25,28 @@
         <java.version>1.8</java.version>
         <mkwebsite.source.root>src/main/react</mkwebsite.source.root>
         <!-- <mkwebsite.source.root>src/main/reacttodoapp</mkwebsite.source.root> -->
+        <sonar.sources>src/main/react,src/main/java</sonar.sources>
+        <sonar.exclusions>src/main/react/node_modules/**,
+            *.java,src/main/java,src/main/resources,
+            src/main/resources/rebel.xml,
+            src/main/resources/rebel-remote.xml,
+            src/main/react/build/**/*.js,
+            src/main/react/config/**/*.js,
+            src/main/react/coverage/**/*.js,
+            src/main/react/scripts/**/*.js,
+            src/main/react/src/registerServiceWorker.js,
+            src/main/react/src/**/*.test.js,
+            src/main/react/src/**/*.spec.js,
+            src/main/react/src/**/__tests__/**,
+        </sonar.exclusions>
+        <!-- <sonar.tests>src/test/java, src/main/react/**/*.test.*</sonar.tests> -->
+        <sonar.coverage.exclusions>
+            src/main/**/com/mk/cti/model/*.java,
+            src/main/**/com/mk/cti/CtiApplication.java,
+            src/main/react/src/**/*.(test|spec).js,
+            src/main/react/src/store/actions/__tests__/ToDo.test.js
+        </sonar.coverage.exclusions>
+        <sonar.javascript.lcov.reportPaths>src/main/react/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
 
     <profiles>
@@ -124,12 +146,6 @@
         <!-- To define the plugin version in your parent POM -->
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.4.0.905</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
@@ -223,6 +239,16 @@
                         </goals>
                         <configuration>
                             <arguments>install</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm testcoverage</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run testcoverage</arguments>
                             <workingDirectory>${mkwebsite.source.root}</workingDirectory>
                         </configuration>
                     </execution>

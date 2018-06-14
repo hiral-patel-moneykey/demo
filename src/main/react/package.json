@@ -30,6 +30,7 @@
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
+    "istanbul": "^0.4.5",
     "jest": "20.0.4",
     "jest-enzyme": "^6.0.1",
     "object-assign": "4.1.1",
@@ -57,7 +58,8 @@
     "start": "node scripts/start.js",
     "start:qa": "REACT_APP_CONFIG_PROFILE=qa node scripts/start.js",
     "build": "REACT_APP_CONFIG_PROFILE=prod node scripts/build.js",
-    "test": "REACT_APP_CONFIG_PROFILE=test node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "testcoverage": "node scripts/test.js --env=jsdom --coverage"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -91,6 +93,10 @@
       "jsx",
       "node",
       "mjs"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/registerServiceWorker.js",
+      "<rootDir>/src/setUpTests.js"
     ]
   },
   "babel": {
