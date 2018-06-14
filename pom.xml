@@ -222,11 +222,22 @@
                             <arguments>--config=${webpack.config.file}</arguments>
                             <environmentVariables>
                                 <NODE_ENV>${environment.name}</NODE_ENV>
-                                <!-- <REACT_APP_CONFIG_PROFILE>${environment.profile}</REACT_APP_CONFIG_PROFILE> -->
                                 <REACT_APP_SPRING_CONFIG_FILE>${mkwebsite.config.file}</REACT_APP_SPRING_CONFIG_FILE>
                             </environmentVariables>
                         </configuration>
                     </execution>
+                    <!--
+                    <execution>
+                        <id>npm run start</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run start</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                        </configuration>
+                    </execution>
+                    -->
                 </executions>
             </plugin>
 

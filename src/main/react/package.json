@@ -54,7 +54,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "REACT_APP_CONFIG_PROFILE=dev node scripts/start.js",
+    "start": "node scripts/start.js",
     "start:qa": "REACT_APP_CONFIG_PROFILE=qa node scripts/start.js",
     "build": "REACT_APP_CONFIG_PROFILE=prod node scripts/build.js",
     "test": "REACT_APP_CONFIG_PROFILE=test node scripts/test.js --env=jsdom"

@@ -13,7 +13,7 @@ var jsonProperties = properties.getAllProperties();
 for(var key in jsonProperties) {
     if(jsonProperties.hasOwnProperty(key))
     {
-        console.log("Key: "+ key + " and Value is "+ jsonProperties[key]);
+        // console.log("Key: "+ key + " and Value is "+ jsonProperties[key]);
         if(key.startsWith(configprefix))
         {
             // process.env["REACT_APP_"+key] = jsonProperties[key];

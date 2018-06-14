@@ -55,14 +55,16 @@ module.exports = {
   output: {
       // This will mark the base folder for output. You must have to
       // provide path as an absolute location.
-      path: paths.resolveApp('../static'),
+      path: paths.resolveApp('../resources/static'),
       // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
+      // filename: 'static/js/bundle.js',
     filename: 'js/bundle.js', // This path  is relative to basepath defined in path property
     // There are also additional JS chunk files if you use code splitting.
+      //chunkFilename: 'static/js/[name].chunk.js',
     chunkFilename: 'js/[name].chunk.js', // This path  is relative to basepath defined in path property
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
@@ -223,7 +225,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-        filename: '../../resources/static/index.html'
+        filename: '../static/index.html'
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
