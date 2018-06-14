@@ -59,18 +59,18 @@ module.exports = {
   entry: [require.resolve('./polyfills'), paths.appIndexJs],
   output: {
     // The build folder.
-    // path: paths.appBuild,
+    path: paths.appBuild,
       // This will mark the base folder for output. You must have to
       // provide path as an absolute location.
-      path: paths.resolveApp('../static'),
+      //path: paths.resolveApp('../static'),
 
       // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    //filename: 'static/js/[name].[chunkhash:8].js',
-      filename: 'js/[name].[chunkhash:8].js',
-      // chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-      chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+    filename: 'static/js/[name].[chunkhash:8].js',
+    //  filename: 'js/[name].[chunkhash:8].js',
+      chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+      //chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -250,7 +250,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-        filename: '../../resources/static/index.html',
+       // filename: '../../resources/static/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
