@@ -1,5 +1,5 @@
-import * as actionTypes from "./actionTypes";
-import * as actions from "../actions";
+import * as actionTypes from "../actionTypes";
+import * as actions from "../../actions";
 
 describe("To Do actions are created", () => {
 
