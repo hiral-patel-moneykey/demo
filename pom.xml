@@ -23,7 +23,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mkwebsite.source.root>src/main/react</mkwebsite.source.root>
+        <!-- <mkwebsite.source.root>src/main/react</mkwebsite.source.root> -->
+        <mkwebsite.source.root>src/main/reacttodoapp</mkwebsite.source.root>
     </properties>
 
     <profiles>
@@ -100,10 +101,23 @@
     </dependencies>
 
     <build>
+        <!-- https://maven.apache.org/pom.html#Build_Settings -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+            </resource>
+            <resource>
+                <targetPath>static</targetPath>
+                <filtering>false</filtering>
+                <directory>${mkwebsite.source.root}/build</directory>
+            </resource>
+            <resource>
+                <targetPath>static</targetPath>
+                <directory>${mkwebsite.source.root}/public</directory>
+                <excludes>
+                    <exclude>index.html</exclude>
+                </excludes>
             </resource>
         </resources>
 
