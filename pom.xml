@@ -23,17 +23,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mkwebsite.source.root>src/main/react</mkwebsite.source.root>
+        <mkwebsite.source.root>src/main/react, src/main/java</mkwebsite.source.root>
         <!-- <mkwebsite.source.root>src/main/reacttodoapp</mkwebsite.source.root> -->
         <sonar.sources>src/main/react,src/main/java</sonar.sources>
+        <sonar.tests>src/test/java,src/it/java</sonar.tests>
         <sonar.exclusions>src/main/react/node_modules/**,
             *.java,src/main/java,src/main/resources,
             src/main/resources/rebel.xml,
             src/main/resources/rebel-remote.xml,
-            src/main/react/build/**/*.js,
-            src/main/react/config/**/*.js,
-            src/main/react/coverage/**/*.js,
-            src/main/react/scripts/**/*.js,
+            src/main/react/build/**/*,
+            src/main/react/config/**/*,
+            src/main/react/coverage/**/*,
+            src/main/react/scripts/**/*,
+            src/main/react/static/**/*,
             src/main/react/src/registerServiceWorker.js,
             src/main/react/src/**/*.test.js,
             src/main/react/src/**/*.spec.js,
