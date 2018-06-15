@@ -1,3 +1,7 @@
+/*
+ * This is the main source file for the project.
+ * It includes running the application class.
+ */
 package com.mk.cti;
 
 import org.apache.catalina.connector.Connector;
@@ -9,26 +13,39 @@ import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class CtiApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(CtiApplication.class, args);
-    }
-
+public class CtiApplication
+{
 
     @Value("${tomcat.ajp.port}")
-    int ajpPort;
+    private int ajpPort;
 
-    @Bean
-    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> servletContainer() {
-        return server -> {
-            if (server instanceof TomcatServletWebServerFactory) {
-                (server).addAdditionalTomcatConnectors(redirectConnector());
-            }
-        };
+    /**
+     * This is the main entry point for the CTI Application.
+     * @param args sdfdsf
+     */
+    public static void main(String[] args)
+    {
+
+        /*
+        This method runs the spring boot cti application.
+         */
+        SpringApplication.run(CtiApplication.class, args);
+
     }
 
-    private Connector redirectConnector() {
+
+    /**
+     * This method returns the instance of a servlet container
+     * @return sdfasd
+     */
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> servletContainer()
+    {
+        return server -> server.addAdditionalTomcatConnectors(redirectConnector());
+    }
+
+    private Connector redirectConnector()
+    {
         Connector connector = new Connector("AJP/1.3");
         connector.setScheme("http");
         connector.setPort(ajpPort);

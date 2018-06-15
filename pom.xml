@@ -23,14 +23,75 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!-- Root folder for the front end code -->
+        <mkwebsite.source.root>src/main/react</mkwebsite.source.root>
+        <!-- Root folder for the sources to scan for sonar -->
+        <!-- <sonar.sources>src/main/react,src/main/java</sonar.sources> -->
+        <sonar.sources>src/main/java</sonar.sources>
+        <!-- Root test folders to scan for sonar -->
+        <sonar.tests>src/test/java,src/it/java</sonar.tests>
+        <!-- Exclude following files from sonar scanner -->
+        <sonar.exclusions>src/main/react/node_modules/**,
+            *.java,src/main/java,src/main/resources,
+            src/main/resources/rebel.xml,
+            src/main/resources/rebel-remote.xml,
+            src/main/react/build/**/*,
+            src/main/react/config/**/*,
+            src/main/react/coverage/**/*,
+            src/main/react/scripts/**/*,
+            src/main/react/static/**/*,
+            src/main/react/src/registerServiceWorker.js,
+            src/main/react/src/**/*.test.js,
+            src/main/react/src/**/*.spec.js,
+            src/main/react/src/**/__tests__/**,
+        </sonar.exclusions>
+        <!-- <sonar.tests>src/test/java, src/main/react/**/*.test.*</sonar.tests> -->
+        <!-- Exclude following files source from test coverage information -->
+        <sonar.coverage.exclusions>
+            src/main/**/com/mk/cti/model/*.java,
+            src/main/**/com/mk/cti/CtiApplication.java,
+            src/main/react/src/**/*.(test|spec).js,
+            src/main/react/src/store/actions/__tests__/ToDo.test.js
+        </sonar.coverage.exclusions>
+        <sonar.javascript.lcov.reportPaths>src/main/react/coverage/lcov.info</sonar.javascript.lcov.reportPaths>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <environment.name>development</environment.name> <!-- This is for webpack. Possible values can be development, production, or test -->
+                <spring.profiles.active>dev</spring.profiles.active> <!-- Which profile needs to be activated in spring boot app -->
+                <webpack.config.file>config/webpack.config.dev.js</webpack.config.file> <!-- This is a webpack configuration file -->
+                <mkwebsite.config.file>application-dev.properties</mkwebsite.config.file>
+                 <!-- <environment.profile>dev</environment.profile> This can be used to indicate which react profile needs to be activated.-->
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <environment.name>production</environment.name>
+                <spring.profiles.active>prod</spring.profiles.active>
+                <webpack.config.file>config/webpack.config.prod.js</webpack.config.file>
+                <mkwebsite.config.file>application-prod.properties</mkwebsite.config.file>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,14 +130,28 @@
     </dependencies>
 
     <build>
+        <!-- https://maven.apache.org/pom.html#Build_Settings -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <targetPath>static</targetPath>
+                <filtering>false</filtering>
+                <directory>${mkwebsite.source.root}/build</directory>
+            </resource>
+            <resource>
+                <targetPath>static</targetPath>
+                <directory>${mkwebsite.source.root}/public</directory>
+                <excludes>
+                    <exclude>index.html</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
         <!-- To define the plugin version in your parent POM -->
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.4.0.905</version>
-            </plugin>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -140,6 +215,79 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.4.0.905</version>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <installDirectory>target</installDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <configuration>
+                            <nodeVersion>v10.1.0</nodeVersion>
+                            <npmVersion>6.1.0</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm testcoverage</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run testcoverage</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>webpack build</id>
+                        <goals>
+                            <goal>webpack</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                            <arguments>--config=${webpack.config.file}</arguments>
+                            <environmentVariables>
+                                <NODE_ENV>${environment.name}</NODE_ENV>
+                                <REACT_APP_SPRING_CONFIG_FILE>${mkwebsite.config.file}</REACT_APP_SPRING_CONFIG_FILE>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                    <!--
+                    <execution>
+                        <id>npm run start</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run start</arguments>
+                            <workingDirectory>${mkwebsite.source.root}</workingDirectory>
+                        </configuration>
+                    </execution>
+                    -->
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 

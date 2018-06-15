@@ -4,9 +4,11 @@ import com.mk.cti.model.PhoneResponse;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PhoneUtility {
+public class PhoneUtility
+{
 
-    public PhoneResponse getPhoneResponse(String phoneNumber) {
+    public PhoneResponse getPhoneResponse(String phoneNumber)
+    {
 
         PhoneResponse phoneResponse = new PhoneResponse();
 
