@@ -17,9 +17,7 @@ import java.util.Arrays;
 // @ActiveProfiles("test")
 public class CtiApplicationTests {
 
-
-
-    @Test
+    // @Test
     public void contextLoads() {
 
         System.out.println("Unit Tests");
