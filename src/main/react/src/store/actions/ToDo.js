@@ -7,7 +7,7 @@ export const addTask = ( task ) => {
         taskDesc: task
     };
 
-}
+};
 
 export const addTaskSuccess = ( responsedata, task ) => {
 
@@ -17,11 +17,11 @@ export const addTaskSuccess = ( responsedata, task ) => {
         taskDesc: task
     }
 
-}
+};
 
 export const addTaskFail = (error) => {
     return {
         type: actionTypes.ADD_TASK_FAIL,
         error: error
     }
-}
+};

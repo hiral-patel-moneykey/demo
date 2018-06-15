@@ -23,10 +23,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <mkwebsite.source.root>src/main/react, src/main/java</mkwebsite.source.root>
-        <!-- <mkwebsite.source.root>src/main/reacttodoapp</mkwebsite.source.root> -->
-        <sonar.sources>src/main/react,src/main/java</sonar.sources>
+        <!-- Root folder for the front end code -->
+        <mkwebsite.source.root>src/main/react</mkwebsite.source.root>
+        <!-- Root folder for the sources to scan for sonar -->
+        <!-- <sonar.sources>src/main/react,src/main/java</sonar.sources> -->
+        <sonar.sources>src/main/java</sonar.sources>
+        <!-- Root test folders to scan for sonar -->
         <sonar.tests>src/test/java,src/it/java</sonar.tests>
+        <!-- Exclude following files from sonar scanner -->
         <sonar.exclusions>src/main/react/node_modules/**,
             *.java,src/main/java,src/main/resources,
             src/main/resources/rebel.xml,
@@ -42,6 +46,7 @@
             src/main/react/src/**/__tests__/**,
         </sonar.exclusions>
         <!-- <sonar.tests>src/test/java, src/main/react/**/*.test.*</sonar.tests> -->
+        <!-- Exclude following files source from test coverage information -->
         <sonar.coverage.exclusions>
             src/main/**/com/mk/cti/model/*.java,
             src/main/**/com/mk/cti/CtiApplication.java,

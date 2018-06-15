@@ -8,7 +8,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "phoneresponse")
-public class PhoneResponse {
+public class PhoneResponse
+{
 
     /**
      * Customerid

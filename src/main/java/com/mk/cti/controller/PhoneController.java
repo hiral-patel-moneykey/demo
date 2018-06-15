@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class PhoneController
 {
 
-    @Autowired
     private PhoneUtility phoneUtility;
-
-    @Autowired
     private PhoneResponseService phoneResponseService;
 
-    @Value("${spring.profiles.active}")
-    private String activeProfile;
+    @Autowired
+    public PhoneController(PhoneUtility phoneUtility, PhoneResponseService phoneResponseService)
+    {
+        this.phoneUtility = phoneUtility;
+        this.phoneResponseService = phoneResponseService;
+    }
 
     @RequestMapping(value="{phoneNumber}", method = RequestMethod.GET)
     public ResponseEntity<PhoneResponse> getCustomerLoanInfo(@PathVariable("phoneNumber") String phoneNumber)
@@ -44,13 +45,5 @@ public class PhoneController
 
 
         return new ResponseEntity<>(phoneResponse, HttpStatus.OK);
-    }
-
-    @RequestMapping(value="/profile", method = RequestMethod.GET)
-    public ResponseEntity<String> getCustomerLoanInfo()
-    {
-        System.out.println("Spring Active profile is "+ activeProfile);
-
-        return new ResponseEntity<>(activeProfile, HttpStatus.OK);
     }
 }

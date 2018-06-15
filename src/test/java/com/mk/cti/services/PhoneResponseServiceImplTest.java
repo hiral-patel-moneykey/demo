@@ -11,19 +11,22 @@ import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.*;
 
-public class PhoneResponseServiceImplTest {
+public class PhoneResponseServiceImplTest
+{
 
     private PhoneResponseRepository mockPhoneResponseRepo;
     private PhoneResponseServiceImpl phoneResponseService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws Exception
+    {
         mockPhoneResponseRepo = mock(PhoneResponseRepository.class);
         phoneResponseService = new PhoneResponseServiceImpl(mockPhoneResponseRepo);
     }
 
     @Test
-    public void findByPhoneNumber() {
+    public void findByPhoneNumber()
+    {
 
         PhoneResponse mockPhoneResponse = new PhoneResponse();
         when(mockPhoneResponseRepo.findByPhoneNumber(anyString())).thenReturn(mockPhoneResponse);
